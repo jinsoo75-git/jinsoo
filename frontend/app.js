@@ -46,6 +46,21 @@ function formatDueLabel(dueAt) {
   return `${dPrefix} ${hh}:${mm}`;
 }
 
+// ---- 생성 시각 표시 (YYYY-MM-DD HH:MM) ----
+function formatCreatedAt(createdAt) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(new Date(createdAt));
+
+  const get = (type) => parts.find((p) => p.type === type).value;
+  return `${get("year")}-${get("month")}-${get("day")} ${get("hour")}:${get("minute")}`;
+}
+
 // ---- API ----
 async function fetchTasks() {
   const res = await fetch(API_BASE);
@@ -102,6 +117,7 @@ function renderTasks() {
           ${dueLabel ? `<span class="text-xs text-slate-500 dark:text-slate-400">${dueLabel}</span>` : ""}
         </div>
         <p class="text-slate-800 dark:text-slate-100 truncate">${escapeHtml(task.title)}</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500 mt-1">생성: ${formatCreatedAt(task.created_at)}</p>
       </div>
       <button
         class="delete-btn w-11 h-11 min-w-[44px] min-h-[44px] rounded-xl flex items-center justify-center text-lg text-red-500 hover:bg-red-100 dark:hover:bg-red-900/30"
