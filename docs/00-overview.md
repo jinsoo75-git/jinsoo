@@ -14,12 +14,15 @@
 | `03-design.md` | 아키텍처/디자인 | 시스템 구조, 폴더 구조, 데이터 모델, API 설계 |
 | `04-tasks.md` | 작업 목록 | 구현할 작업 단위, 우선순위, 진행 상황 |
 | `05-conventions.md` | 컨벤션 | 코딩 스타일, 네이밍, 커밋 메시지, 테스트 규칙 |
+| `06-extensions.md` | 확장 계획 | MVP 이후 확장 항목(JWT 로그인/팀/Kanban/채팅/CI-CD)의 범위와 착수 조건 |
 
 ## 읽는 순서
 
 ```
-00-overview → 01-product → 02-specs → 03-design → 04-tasks → 05-conventions
+00-overview → 01-product → 02-specs → 03-design → 04-tasks → 05-conventions → 06-extensions
 ```
+
+`06-extensions.md`는 MVP(Phase 1~3) 작업 시에는 참고만 하고, 확장 단계 착수 시에만 상세히 따른다.
 
 작업을 시작하기 전 이 순서대로 모든 문서를 읽는다. 순서를 건너뛰거나 역순으로 읽지 않는다.
 
