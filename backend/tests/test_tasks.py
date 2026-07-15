@@ -49,6 +49,24 @@ def test_update_task_not_found(client):
     assert res.status_code == 404
 
 
+def test_update_task_invalid_title(client):
+    created = client.post("/api/tasks", json={"title": "A"}).json()
+    res = client.put(f"/api/tasks/{created['id']}", json={"title": ""})
+    assert res.status_code == 400
+
+
+def test_update_task_invalid_status(client):
+    created = client.post("/api/tasks", json={"title": "A"}).json()
+    res = client.put(f"/api/tasks/{created['id']}", json={"status": "invalid-status"})
+    assert res.status_code == 400
+
+
+def test_update_task_invalid_due_at(client):
+    created = client.post("/api/tasks", json={"title": "A"}).json()
+    res = client.put(f"/api/tasks/{created['id']}", json={"due_at": "not-a-date"})
+    assert res.status_code == 400
+
+
 def test_delete_task_success(client):
     created = client.post("/api/tasks", json={"title": "A"}).json()
     res = client.delete(f"/api/tasks/{created['id']}")
